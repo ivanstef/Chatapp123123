@@ -1,5 +1,9 @@
-
+#action-area {
+    width: 100%;
+}
 #capturePhotoButton {
+    display:block;
+    width: 99px;
     font-size:99px;
     margin: 0 auto;
 }

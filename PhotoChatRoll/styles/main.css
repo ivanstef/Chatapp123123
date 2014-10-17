@@ -22,6 +22,17 @@
     clear: both;
 }
 
+.fa .km-icon:after,
+.fa .km-icon:before
+{
+    font: 1em/1em 'FontAwesome';
+}
+
+.km-camera:after,
+.km-camera:before {
+  content: "\F030";
+}
+
 .km-flat .km-loader,
 .km-flat .km-rowinsert,
 .km-flat .km-state-active,

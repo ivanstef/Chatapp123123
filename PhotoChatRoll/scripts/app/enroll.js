@@ -51,7 +51,7 @@ app.Enroll = (function () {
 
 
         return {
-            intensions: intensionsDataSource,
+            intentions: intentionsDataSource,
             name: nameDataSource,
             cameraUpload: cameraUploadsDataSource,
             distances: distancesDataSource,

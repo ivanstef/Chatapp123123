@@ -55,7 +55,7 @@ app.Enroll = (function () {
             name: nameDataSource,
             cameraUpload: cameraUploadsDataSource,
             distances: distancesDataSource,
-
+            enroll: enroll
         }
     }());
     return enrollViewModel;

@@ -51,12 +51,13 @@ app.Enroll = (function () {
 
 
         return {
-            intentions: intentionsDataSource,
+            Intentions: intentionsDataSource,
             name: nameDataSource,
-            cameraUpload: cameraUploadsDataSource,
-            distances: distancesDataSource,
+           // cameraUpload: cameraUploadsDataSource,
+            Distances: distanceDataSource,
             enroll: enroll
         }
     }());
+    
     return enrollViewModel;
 }());

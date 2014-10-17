@@ -24,7 +24,8 @@ cameraApp.prototype = {
         var that = this;
         that._pictureSource = navigator.camera.PictureSourceType;
         that._destinationType = navigator.camera.DestinationType;
-        id("capturePhotoButton").addEventListener("click", function () {
+
+        $("#capturePhotoButton").on("click", function () {
             that._capturePhoto.apply(that, arguments);
         });
 
@@ -60,7 +61,7 @@ cameraApp.prototype = {
     },
 
     _onPhotoDataSuccess: function (imageData) {
-        var smallImage = document.getElementById('smallImage');
+        var smallImage = document.getElementById('cameraResult');
         smallImage.style.display = 'block';
 
         // Show the captured photo.
@@ -68,7 +69,7 @@ cameraApp.prototype = {
     },
 
     _onPhotoURISuccess: function (imageURI) {
-        var smallImage = document.getElementById('smallImage');
+        var smallImage = document.getElementById('cameraResult');
         smallImage.style.display = 'block';
 
         // Show the captured photo.

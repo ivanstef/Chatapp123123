@@ -5,16 +5,13 @@
 var app = app || {};
 
 window.localStorage.setItem('channelId', '1c56e950-56fd-11e4-90ab-35bf04915830');
-window.localStorage.setItem('currentParticipantId', '02818bc0-56f8-11e4-8078-ad8a3e51b7f2');
-window.localStorage.setItem('participantId', '06dad090-56f4-11e4-8f7c-0fa55703a46a');
+window.localStorage.setItem('currentParticipantId', '06dad090-56f4-11e4-8f7c-0fa55703a46a');
+window.localStorage.setItem('participantId', '02818bc0-56f8-11e4-8078-ad8a3e51b7f2');
 
 app.Messages = (function () {
     'use strict';
 
     app.Participants.load();
-
-    
-    
 
     var messagesViewModel = (function () {
         
@@ -46,19 +43,7 @@ app.Messages = (function () {
         ortcClient.send(channel, Msg);
     };
 
-    // Displays a message received
-    var onMessage = function (client, channel, message) {
-        var msg = JSON.parse(message);
-        app.everlive.data('Message').create({
-            ChannelId: window.localStorage.getItem('channelId'),
-            ReceiverId: msg.receiverId,
-            SenderId: msg.senderId,
-            Content: msg.msg
-        }, function(data){
-            $("#msg-listview").data("kendoListView").refresh();
-        }, function(error){
-        });
-    };
+   
 
     // Creates the client and the connection
     var createClient = function () {
@@ -113,11 +98,11 @@ app.Messages = (function () {
             var Msg = {
                 senderId: window.localStorage.getItem('currentParticipantId'),
                 receiverId: window.localStorage.getItem('participantId'),
-                msg: document.getElementById('msg').value
+                msg: document.getElementById('Msg').value
             };
             
             send(JSON.stringify(Msg));
-            document.getElementById('msg').value = '';
+            document.getElementById('Msg').value = '';
         };
 
 
@@ -169,9 +154,7 @@ app.Messages = (function () {
                 return sender ? sender.Nickname : 'Anonymous';
             },
             IsInitiator: function () {
-                console.log(this.get('SenderId'));
-                console.log(window.localStorage.getItem('currentParticipantId'));
-                return this.get('SenderId') === window.localStorage.getItem('currentParticipantId');
+                 return this.get('SenderId') === window.localStorage.getItem('currentParticipantId');
             }
         };
 
@@ -195,7 +178,20 @@ app.Messages = (function () {
                 value: window.localStorage.getItem('channelId')
             }
         });
-
+         // Displays a message received
+        var onMessage = function (client, channel, message) {
+            var msg = JSON.parse(message);
+            app.everlive.data('Message').create({
+                ChannelId: window.localStorage.getItem('channelId'),
+                ReceiverId: msg.receiverId,
+                SenderId: msg.senderId,
+                Content: msg.msg
+            }, function(data){
+                console.log(messagesDataSource.fetch());
+               // $("#msg-listview").data("kendoListView").refresh();
+            }, function(error){
+            });
+        };
         return {
             messages: messagesDataSource,
             sendMsg: sendMsg

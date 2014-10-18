@@ -46,11 +46,13 @@ cameraApp.prototype = {
     },
 
     _onPhotoURISuccess: function (imageURI) {
-        var smallImage = document.getElementById('cameraResult');
-        smallImage.style.display = 'block';
+        //var smallImage = document.getElementById('capturePhotoButton');
+        //smallImage.style.display = 'block';
 
         // Show the captured photo.
-        smallImage.src = imageURI;
+        //smallImage.src = imageURI;
+        
+        $('#capturePhotoButton').attr('src', imageURI);
     },
 
     _onFail: function (message) {

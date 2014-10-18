@@ -61,11 +61,11 @@ app.Enroll = (function () {
                 var imageURI = lStorage.getItem('ImageURI');
                 var uploadUrl = app.everlive.Files.getUploadUrl();
 
-                var image = imageURI.substring(imageURI.lastIndexOf('/') + 1);
+                //var image = imageURI.substring(imageURI.lastIndexOf('/') + 1);
 
                 var options = new FileUploadOptions();
                 options.fileKey = "file";
-                options.fileName = image;
+                options.fileName = ParticipantId + '.jpg';
                 options.mimeType = "image/jpeg";
                 options.params = {Owner: ParticipantId};
                 options.headers = app.everlive.buildAuthHeader();
@@ -75,7 +75,6 @@ app.Enroll = (function () {
                     var responseCode = r.responseCode;
 
                     var res = JSON.parse(r.response);
-                    console.log(res);
                     var uploadedFileId = res.Result[0].Id;
                     var uploadedFileUri = res.Result[0].Uri;
 
@@ -84,7 +83,7 @@ app.Enroll = (function () {
                         Id: ParticipantId,
                         Image: uploadedFileId
                     }, function (data) {
-                       lStorage.setItem('current', data.result);
+                       lStorage.setItem('currentImage', app.helper.resolvePictureUrl(uploadedFileId));
                         //alert('successfuly associated image with user');
                         lStorage.removeItem('ImageURI');
                       

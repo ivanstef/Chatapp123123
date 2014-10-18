@@ -9,10 +9,9 @@ app.Rollette = (function () {
     var roletteViewModel = (function()
     {
         var show = function(){
-            var current = window.localStorage.getItem('current');
-            alert(JSON.stringify(current));
-            if(current.Image !== null)
-                $('#InitiatorProfile img').attr('src', current.Image);
+            var current = window.localStorage.getItem('currentImage');
+            if(current !== null)
+                $('#InitiatorProfile img').attr('src', current);
         };
         
         return {

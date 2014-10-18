@@ -267,26 +267,28 @@
 #login-form .distance:before  {
     position: absolute;
     top: 50%;
-    right: .75em;
+    right: .8em;
     display: block;
-    margin-top: -.5em;
+    margin-top: -.7em;
     width: 1em;
     height: 1em;
     background-color: transparent;
     background-position: 0 0;
     background-repeat: no-repeat;
-    content: '';
+    color: #b6c5c6;
+    font-family: FontAwesome;
 }
 #login-form .username:before {
-    background-image: url(images/icon-username.png);
+    content: '\f007';
 }
 #login-form .password:before {
     background-image: url(images/icon-password.png);
 }
 .intention:before {
-   font-family: FontAwesome;
-   content: "\F095";
-    color: black;
+    content: "\f044";
+}
+.distance:before {
+    content: '\f041';
 }
 #friendsApp .welcome-scrn .group-wrp {
     margin: -1em 1em 0;

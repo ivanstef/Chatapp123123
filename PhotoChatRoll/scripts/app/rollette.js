@@ -4,21 +4,26 @@
 var app = app || {};
 
 app.Rollette = (function () {
-    var init = function(){
-        
-    };
-    var show = function(){
-        
-    };
-    var hide = function(){
-        
-    };
+    'use strict';
     
-    return 
+    var roletteViewModel = (function()
     {
-        init: init,
-        show: show,
-        hide: hide
-    };
-    
+        var init = function(){
+            
+        };
+        var show = function(){
+            
+        };
+        var hide = function(){
+            
+        };
+        
+        return 
+        {
+            init: init,
+            show: show,
+            hide: hide
+        };
+    }());
+    return roletteViewModel;
 }());

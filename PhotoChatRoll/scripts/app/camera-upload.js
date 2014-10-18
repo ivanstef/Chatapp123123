@@ -39,7 +39,7 @@ cameraApp.prototype = {
         }, function () {
             that._onFail.apply(that, arguments);
         }, {
-            quality: 70,
+            quality: 60,
             destinationType: that._destinationType.FILE_URI,
             //allowEdit: true,
             //targetWidth: 600,

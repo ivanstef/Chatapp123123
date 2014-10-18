@@ -12,6 +12,14 @@ app.Messages = (function () {
     'use strict';
 
     app.Participants.load();
+    
+    $('#Msg').autogrow({
+        maxHeight: 150
+    });
+    
+    $('.msg-initiator').closest('li').css({
+        'background-color': '#eee'
+    });
 
     var messagesViewModel = (function () {
         

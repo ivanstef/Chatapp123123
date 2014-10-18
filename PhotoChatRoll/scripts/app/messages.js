@@ -4,9 +4,13 @@
 
 var app = app || {};
 
+//window.localStorage.setItem('channelId', '535f6650-56c3-11e4-8034-2b72add164ab');
+//window.localStorage.setItem('currentParticipantId', 'cd6d5000-56b5-11e4-955f-bbcfcd62b8c9');
+
 app.Messages = (function () {
     'use strict';
     
+    app.Participants.load();
     var loadScript = function (url, callback) {
         var script = document.createElement("script");
         script.type = "text/javascript";
@@ -28,7 +32,7 @@ app.Messages = (function () {
     };
     
     var ortcClient = null,
-        channel = 'YOUR_CHANNEL';
+        channel = window.localStorage.getItem('channelId');
     
      // Sends a message
         function send() {
@@ -78,10 +82,11 @@ app.Messages = (function () {
 
     var messagesViewModel = (function () {
         
+        
         var messageModel = {
             id: 'Id',
             fields: {
-                Msg: {
+                Content: {
                     field: 'Content',
                     defaultValue: ''
                 },
@@ -118,12 +123,16 @@ app.Messages = (function () {
             Sender: function () {
 
                 var SenderId = this.get('SenderId');
-
+              
                 var sender = $.grep(app.Participants.participants(), function (e) {
                     return e.Id === SenderId;
                 })[0];
 
                 return sender ? sender.Nickname : 'Anonymous';
+            },
+            IsInitiator: function() {
+                console.log(this.get('SenderId'));console.log(window.localStorage.getItem('currentParticipantId'));
+                return this.get('SenderId') === window.localStorage.getItem('currentParticipantId');
             }
         };
         
@@ -136,20 +145,12 @@ app.Messages = (function () {
                 typeName: 'Message'
             },
             serverFiltering: true,
-            change: function (e) {
-
-                if (e.items && e.items.length > 0) {
-                    $('#msg-listview').kendoMobileListView({
-                        dataSource: e.items,
-                        template: kendo.template($('#msgTemplate').html())
-                    });
-                } else {
-                    $('#msg-listview').empty();
-                }
-            },
-            sort: { field: 'CreatedAt', dir: 'asc' }
+           
+            sort: { field: 'CreatedAt', dir: 'asc' },
+            filter: { field: 'ChannelId', operator: 'eq', value: window.localStorage.getItem('channelId')}
         });
         
+        //alert(JSON.stringify(messagesDataSource.view()));
         return {
             messages: messagesDataSource
         };

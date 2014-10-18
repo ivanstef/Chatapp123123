@@ -664,7 +664,7 @@
     <Content Include="scripts\app\camera-upload.js" />
     <Content Include="scripts\app\comments.js" />
     <Content Include="scripts\app\enroll.js" />
-    <Content Include="scripts\app\jquery.countdown.min.js" />
+    <Content Include="scripts\app\jquery.countdown.js" />
     <Content Include="scripts\app\login.js" />
     <Content Include="scripts\app\rollette.js" />
     <Content Include="scripts\app\settings.js" />

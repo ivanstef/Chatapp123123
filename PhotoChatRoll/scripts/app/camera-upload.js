@@ -41,8 +41,8 @@ cameraApp.prototype = {
             quality: 70,
             destinationType: that._destinationType.FILE_URI,
             //allowEdit: true,
-            targetWidth: 600,
-            targetHeight: 600,
+            //targetWidth: 600,
+            //targetHeight: 600,
             ncodingType: Camera.EncodingType.JPEG
         });
     },
@@ -52,7 +52,7 @@ cameraApp.prototype = {
         
         localStorage.setItem('ImageURI', imageURI);
         
-        $('#capturePhotoButton').attr('src', imageURI).css({height:200});
+        $('#capturePhotoButton').attr('src', imageURI).css();
     },
 
     _onFail: function (message) {

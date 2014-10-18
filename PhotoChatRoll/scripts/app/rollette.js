@@ -13,7 +13,7 @@ app.Rollette = (function () {
                 $('#InitiatorProfile img').attr('src', current);
         };
         
-        var init = (function () {
+        var init = function () {
             $('#counter_2').countdown({
                 image: 'styles/images/digits.png',
                 startTime: '00:05',
@@ -22,7 +22,7 @@ app.Rollette = (function () {
                 },
                 format: 'mm:ss'
             });
-        }());
+        };
 
         return {
             show: show,

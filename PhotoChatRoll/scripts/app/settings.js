@@ -17,6 +17,12 @@ var appSettings = {
     feedback: {
         apiKey: '$APPFEEDBACK_API_KEY$'  // Put your AppFeedback API key here
     },
+    
+    ortc: {
+        url: 'http://ortc-developers.realtime.co/server/2.1/',
+        applicationKey: 'SDBdb5',
+        authenticationToken: '8I95C0CarKIj'
+    },
 
     messages: {
         mistSimulatorAlert: 'The social login doesn\'t work in the In-Browser Client, you need to deploy the app to a device, or run it in the simulator of the Windows Client or Visual Studio.',

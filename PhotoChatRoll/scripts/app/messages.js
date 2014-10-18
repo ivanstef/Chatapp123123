@@ -5,7 +5,76 @@
 var app = app || {};
 
 app.Messages = (function () {
-    'use strict'
+    'use strict';
+    
+    var loadScript = function (url, callback) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+
+        if (script.readyState) {  //IE
+            script.onreadystatechange = function () {
+                if (script.readyState == "loaded" || script.readyState == "complete") {
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else {  //Others
+            script.onload = function () {
+                callback();
+            };
+        }
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    };
+    
+    var ortcClient = null,
+        channel = 'YOUR_CHANNEL';
+    
+     // Sends a message
+        function send() {
+            var message = document.getElementById('txtMessage').value;
+            ortcClient.send(channel, message);
+        };
+
+        // Displays a message received
+        var onMessage = function (client, channel, message) {
+        };
+
+        // Creates the client and the connection
+        var createClient = function () {
+            loadOrtcFactory(IbtRealTimeSJType, function (factory, error) {
+                // Checks if we have successfuly created the factory
+                if (error != null) {
+                    console.error(error);
+                }
+                else {
+                    // Creates the factory
+                    ortcClient = factory.createClient();                    
+                    ortcClient.setClusterUrl(appSettings.ortc.url);
+
+                    // Callback for when we're connected
+                    ortcClient.onConnected = function (ortc) {
+                        ortcClient.subscribe(channel, true, onMessage);
+                    };
+
+                    ortcClient.connect(appSettings.ortc.applicationKey, appSettings.ortc.authenticationToken);
+                }
+            });
+        };
+
+        $(function () {
+            document.addEventListener("deviceready", function () {
+                 var isAndroid = (navigator.userAgent.match(/Android/i)) == "Android" ? true : false;
+
+                if(isAndroid){
+                    loadScript("scripts/lib/phonegap-websocket.js",function(){
+                        createClient();
+                    });
+                }else{
+                    createClient();
+                }
+            });
+        });
 
     var messagesViewModel = (function () {
         

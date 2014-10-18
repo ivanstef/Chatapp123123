@@ -36,14 +36,11 @@
     "org.apache.cordova.dialogs",
     "org.apache.cordova.file",
     "org.apache.cordova.file-transfer",
-    "org.apache.cordova.geolocation",
-    "org.apache.cordova.globalization",
     "org.apache.cordova.inappbrowser",
     "org.apache.cordova.keyboard",
     "org.apache.cordova.media",
     "org.apache.cordova.network-information",
-    "org.apache.cordova.splashscreen",
-    "org.apache.cordova.vibration"
+    "org.apache.cordova.splashscreen"
   ],
   "CordovaPluginVariables": {
     "com.telerik.mobiletesting": {
@@ -52,12 +49,7 @@
   },
   "AndroidPermissions": [
     "android.permission.CAMERA",
-    "android.permission.VIBRATE",
-    "android.permission.ACCESS_COARSE_LOCATION",
-    "android.permission.ACCESS_FINE_LOCATION",
-    "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
     "android.permission.INTERNET",
-    "android.permission.WRITE_EXTERNAL_STORAGE",
     "android.permission.ACCESS_NETWORK_STATE",
     "android.permission.BROADCAST_STICKY"
   ],

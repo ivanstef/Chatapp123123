@@ -1,5 +1,5 @@
 <div data-role="view" id="rollette" data-layout="default" class="rollete-view" data-model="app.Rollette" data-init="app.Rollette.init" data-show="app.Rollette.show">
-    
+
     <div data-role="header">
         <div data-role="navbar">
             Rollette
@@ -7,16 +7,25 @@
         </div>
     </div>
     <form id="rolletteForm">
-    
-        <div id="counter_2"></div> 
+
+        <div id="counter_2"></div>
         <span id="InitiatorProfile">
-            <img id="InitProfile" />            
+            <img id="InitProfile" />
         </span>
         <span id="SelecteeProfile">
-            <img src="" />            
+            <div id="example">
+                <div id="container">
+                    <div class="side" id="store">
+                        <button class="toggle">Library</button>
+                    </div>
+
+                    <div class="side" id="library">
+                        <button class="toggle">Store</button>
+                    </div>
+                </div>
         </span>
         <div id="approveRollette">
-            <img src="" />
+            <img src="styles/images/approved.png" />
         </div>
-    </form>    
+    </form>
 </div>

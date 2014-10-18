@@ -1,14 +1,17 @@
 <div data-role="view" id="rollette" data-layout="default" class="rollete-view" data-model="app.Rollette">
-    
     <div data-role="header">
         <div data-role="navbar">
             Rollette
             <a class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton" href="#welcome">Back</a>
         </div>
     </div>
-
     <form id="rollette">
-        <div id="rotatingCicle">
+        <div class="container">
+            <div id="activeBorder" class="active-border" data-bind="events: {load:loopit}">
+                <div id="circle" class="circle">
+                    <span class="prec 270" id="prec">0%</span>
+                </div>
+            </div>
         </div>
         <span id="user1Rollette">
             <img src="" />            
@@ -19,5 +22,5 @@
         <div id="approveRollette">
             <img src="" />
         </div>
-    </form>    
+    </form>
 </div>

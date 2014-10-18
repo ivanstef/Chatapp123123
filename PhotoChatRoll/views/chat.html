@@ -8,13 +8,20 @@
     <div class="comments-wrp">
         <ul id="msg-listview" data-role="listview" data-style="inset" data-bind="source:messages" data-template="msgTemplate"></ul>
     </div>
+    <div data-role="footer">
+        <span class="k-textbox k-space-right" id="sendMsgBox">
+            <span>
+                <textarea></textarea>
+                <a href="#" class="k-button fa fa-send"></a>
+            </span>
+            <span class="clear"></span>
+        </span>
+    </div>
 </div>
-
-
 <script type="text/x-kendo-template" id="msgTemplate">
     <div class="comment-content #if(IsInitiator()){# comment-initiator #}#">
-        <a class="user-share-txt">${Content}</a>
+        <a class="user-share-txt"> ${Content} </a>
         <h2 class="person-name">${Sender()}</h2>
-        <span class="time-span">${CreatedAtFormatted()}</span>
+        <span class="time-span"> ${CreatedAtFormatted()} < /span>
     </div>
 </script>

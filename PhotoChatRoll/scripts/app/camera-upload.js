@@ -5,6 +5,7 @@ function id(element) {
 }
 
 function onDeviceReady() {
+    window.localStorage.removeItem('ImageURI');
     cameraApp = new cameraApp();
     cameraApp.run();
 

@@ -59,6 +59,7 @@ app.Enroll = (function () {
                 var lStorage = window.localStorage;
 
                 var imageURI = lStorage.getItem('ImageURI');
+                alert(imageURI);
                 
                 if( imageURI !== null )
                 {

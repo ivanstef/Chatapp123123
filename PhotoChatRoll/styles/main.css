@@ -15,18 +15,18 @@
     background-color: #39B4CC;
     background-image: linear-gradient(91deg, transparent 50%, #A2ECFB 50%), linear-gradient(90deg, #A2ECFB 50%, transparent 50%);
 }
-br {
+#rolletteForm br {
     clear: both;
 }
-.cntSeparator {
+#rolletteForm .cntSeparator {
     font-size: 54px;
     margin: 10px 7px;
     color: #000;
 }
-.desc {
+#rolletteForm .desc {
     margin: 7px 3px;
 }
-.desc div {
+#rolletteForm .desc div {
     float: left;
     font-family: Arial;
     width: 70px;
@@ -35,6 +35,7 @@ br {
     font-weight: bold;
     color: #000;
 }
+
 #user1Rollette {} #user2Rollette {} #approveRollette {} .cf {
     zoom: 1;
 }

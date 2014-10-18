@@ -52,7 +52,7 @@ cameraApp.prototype = {
         
         localStorage.setItem('ImageURI', imageURI);
         
-        $('#capturePhotoButton').attr('src', imageURI).css({width:200,height:200});
+        $('#capturePhotoButton').attr('src', imageURI).css({height:200});
     },
 
     _onFail: function (message) {

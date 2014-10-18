@@ -11,6 +11,22 @@
 .comment-initiator {
     background-color: yellow;
 }
+#sendMsgBox {
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-top: 3px solid #fff;
+}
+#sendMsgBox textarea {
+    float: left;
+    width: 88%;
+}
+#sendMsgBox .k-button {
+    display: block;
+    float: left;
+    font-family: FontAwesome;
+    margin-left: 1px;
+}
 .active-border {
     position: relative;
     text-align: center;

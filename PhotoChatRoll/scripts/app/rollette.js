@@ -9,10 +9,10 @@ app.Rollette = (function () {
     var roletteViewModel = (function()
     {
         var show = function(){
-            var currentUser = app.Users.currentUser;
-            alert(JSON.stringify(currentUser));
-            if(currentUser.data !== null)
-                $('#InitiatorProfile img').attr('src', currentUser.data.Picture);
+            var current = window.localStorage.getItem('current');
+            alert(JSON.stringify(current));
+            if(current.Image !== null)
+                $('#InitiatorProfile img').attr('src', current.Image);
         };
         
         return {

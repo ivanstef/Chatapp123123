@@ -23,7 +23,7 @@ cameraApp.prototype = {
         that._pictureSource = navigator.camera.PictureSourceType;
         that._destinationType = navigator.camera.DestinationType;
 
-        $("#capturePhotoButton").on("click", function () {
+        id("capturePhotoButton").addEventListener("click", function () {
             that._capturePhoto.apply(that, arguments);
         });
 

@@ -37,17 +37,26 @@
     <!--WELCOME VIEW -->
     <div data-role="view" id="welcome" data-layout="default" class="welcome-scrn form-view" data-model="app.Enroll">
         <div data-role="header"></div>
-        <h1 class="app-logo hide-text center-block">
-                ChatSnap
-            </h1>
-            <div id="action-area">
-                <a id="capturePhotoButton"><span class="button km-camera"></span></a> 
-            </div>
+        <!--<h1 class="app-logo hide-text center-block">
+                Telerik <small>DevCloud</small>
+        </h1>-->
+        <h2 class="app-name center-text">
+                Chatsnap <small>Find chat pall immediately</small>
+            </h2>
         <form id="login-form">
+            <div id="action-area">
+<<<<<<< HEAD
+                <a id="capturePhotoButton"><span class="button km-camera"></span></a> 
+=======
+                <a id="capturePhotoButton"><img id="capturePhotoButton" src="styles/images/camera-icon.png"/></a> 
+>>>>>>> master
+            </div>
+            <br />
             <ul data-role="listview" data-style="inset">
                 <li class="username">
                     <input type="text" id="loginUsername" placeholder="Username" required validationMessage="Username is required!" />
                 </li>
+                 
                 <li class="intention">
                     <input data-role="dropdownlist" data-text-field="Intention" data-value-field="IntentionID" data-bind="source:Intentions" />
                 </li>
@@ -58,7 +67,7 @@
         </form>
         <ol class="group-wrp">
             <li>
-                <span id="login" data-role="touch" data-bind="events: { tap: enroll }">
+                <span id="login" data-role="touch" data-bind="events: { tap: login }">
                         <a data-role="button" class="btn btn-login">Enroll</a>
                     </span>
             </li>

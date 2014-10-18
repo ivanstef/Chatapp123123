@@ -46,6 +46,63 @@ app.Enroll = (function () {
         ];
 
         var enroll = function () {
+            
+            var UserName = $('#username').val();
+            
+            var Users = app.everlive.Users;
+            var AvailableUsers = app.everlive.data('AvailableUsers');
+            
+            Users.register(UserName, 'pass', {},
+            function(data){
+                
+                var UserId = data.result.Id;
+                
+                // Add the newly created user to the waiting list
+                AvailableUsers.create({
+                    UserId: UserId
+                });
+                
+                // Handle image upload
+                var lStorage = window.localStorage;
+                
+                var imageURI = lStorage.getItem('ImageURI');
+                var uploadUrl = app.everlive.Files.getUploadUrl();
+                
+                var image = imageURI.substring(imageURI.lastIndexOf('/')+1);
+                
+                var options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = image;
+                options.mimeType = "image/jpeg";
+                options.headers = app.everlive.buildAuthHeader();
+                
+                var ft = new FileTransfer();
+                ft.upload(imageURI, uploadUrl, function(r) {
+                    var responseCode = r.responseCode;
+                
+                    var res = JSON.parse(r.response);
+                    var uploadedFileId = res.Result[0].Id;
+                    var uploadedFileUri = res.Result[0].Uri;
+                    
+                    // Set relation of the image to the user
+                    app.everlive.Users.updateSingle({
+                        Id: UserId,
+                        'Picture': uploadedFileId
+                    }, function(data){
+                        lStorage.removeItem('ImageURI');
+                    });
+                    // use the Id and the Uri of the uploaded file 
+                }, function(error) {
+                    alert("An error has occurred:" + JSON.stringify(error));
+                }, options);
+            }, function(error){
+                app.showError(error);
+            });
+            
+            AvailableUsers.create({
+                
+            });
+            
             app.mobileApp.navigate('views/rollette.html');
         };
 

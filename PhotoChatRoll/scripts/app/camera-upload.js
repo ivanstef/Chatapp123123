@@ -56,10 +56,14 @@ cameraApp.prototype = {
         // Show the captured photo.
         //smallImage.src = imageURI;
         
-        $('#capturePhotoButton').attr('src', imageURI);
+        var localStorage = window.localStorage;
+        
+        localStorage.setItem('ImageURI', imageURI);
+        
+        $('#capturePhotoButton').attr('src', imageURI).css({width:200,height:200});
     },
 
     _onFail: function (message) {
-        alert(message);
+        app.showError(message);
     }
 }

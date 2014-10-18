@@ -5,12 +5,6 @@ app.Enroll = (function () {
     'use strict';
     var enrollViewModel = (function () {
 
-        var nameDataSource = (function () {
-            var name = $('#loginUsername').val();
-
-
-        });
-
         var intentionsDataSource = [
             {
                 IntentionID: 1,
@@ -49,83 +43,67 @@ app.Enroll = (function () {
 
             var UserName = $('#username').val();
 
-            var Users = app.everlive.Users;
-            var AvailableUsers = app.everlive.data('AvailableUsers');
-
-            Users.register(UserName, 'pass', {},
-                function (data) {
-                    
-                    var UserId = data.result.Id;
-
-                    app.everlive.Users.login(UserName,
-                        'pass',
-                        function (data) {
-                            //alert(JSON.stringify(data));
-                        },
-                        function (error) {
-                            //alert(JSON.stringify(error));
-                        });
-
-                    // Add the newly created user to the waiting list
-                    AvailableUsers.create({
-                        UserId: UserId
-                    });
-
-                    // Handle image upload
-                    var lStorage = window.localStorage;
-
-                    var imageURI = lStorage.getItem('ImageURI');
-                    var uploadUrl = app.everlive.Files.getUploadUrl();
-
-                    var image = imageURI.substring(imageURI.lastIndexOf('/') + 1);
-
-                    var options = new FileUploadOptions();
-                    options.fileKey = "file";
-                    options.fileName = image;
-                    options.mimeType = "image/jpeg";
-                    options.params = {Owner: UserId};
-                    options.headers = app.everlive.buildAuthHeader();
-
-                    var ft = new FileTransfer();
-                    ft.upload(imageURI, uploadUrl, function (r) {
-                        var responseCode = r.responseCode;
-
-                        var res = JSON.parse(r.response);
-                        var uploadedFileId = res.Result[0].Id;
-                        var uploadedFileUri = res.Result[0].Uri;
-
-                        // Set relation of the image to the user
-                        app.everlive.Users.updateSingle({
-                            Id: UserId,
-                            Picture: uploadedFileId
-                        }, function (data) {                   
-                            app.everlive.Users.getById(UserId).then(function(data){
-                                app.Users.currentUser.data = data.result;
-                                app.Users.currentUser.data.Picture = app.helper.resolvePictureUrl(app.Users.currentUser.data.Picture);
-                            }).then(function(error){
-                            });
-                            //alert('successfuly associated image with user');
-                            lStorage.removeItem('ImageURI');
-                          
-                            app.mobileApp.navigate('views/rollette.html');
-                        }, function (error) {
-                            //alert("An error has occurred:" + JSON.stringify(error) + ' a1');
-                        });
-                        // use the Id and the Uri of the uploaded file
-                    }, function (error) {
-                        //alert("An error has occurred:" + JSON.stringify(error) + ' a1');
-                    }, options);
-                }, function (error) {
-                    app.showError(error);
+            var Participant = app.everlive.data('Participant');
+            
+            Participant.create({
+                Nickname: UserName
+            }, function(data){
+                
+                var ParticipantId = data.result.Id;
+                
+                app.everlive.data('AvailableParticipants').create({
+                    ParticipantId: ParticipantId
                 });
+                
+                 // Handle image upload
+                var lStorage = window.localStorage;
 
+                var imageURI = lStorage.getItem('ImageURI');
+                var uploadUrl = app.everlive.Files.getUploadUrl();
+
+                //var image = imageURI.substring(imageURI.lastIndexOf('/') + 1);
+
+                var options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = ParticipantId + '.jpg';
+                options.mimeType = "image/jpeg";
+                options.params = {Owner: ParticipantId};
+                options.headers = app.everlive.buildAuthHeader();
+
+                var ft = new FileTransfer();
+                ft.upload(imageURI, uploadUrl, function (r) {
+                    var responseCode = r.responseCode;
+
+                    var res = JSON.parse(r.response);
+                    var uploadedFileId = res.Result[0].Id;
+                    var uploadedFileUri = res.Result[0].Uri;
+
+                    // Set relation of the image to the user
+                    app.everlive.data('Participant').updateSingle({
+                        Id: ParticipantId,
+                        Image: uploadedFileId
+                    }, function (data) {
+                       lStorage.setItem('currentImage', app.helper.resolvePictureUrl(uploadedFileId));
+                        //alert('successfuly associated image with user');
+                        lStorage.removeItem('ImageURI');
+                      
+                        app.mobileApp.navigate('views/rollette.html');
+                    }, function (error) {
+                        alert("An error has occurred:" + JSON.stringify(error) + ' a1');
+                    });
+                    // use the Id and the Uri of the uploaded file
+                }, function (error) {
+                    alert("An error has occurred:" + JSON.stringify(error) + ' a1');
+                }, options);
+                
+            }, function(error){
+                alert(JSON.stringify(error));
+            });
             
         };
 
         return {
             Intentions: intentionsDataSource,
-            name: nameDataSource,
-            // cameraUpload: cameraUploadsDataSource,
             Distances: distanceDataSource,
             enroll: enroll
         }

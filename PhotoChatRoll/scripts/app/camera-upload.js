@@ -41,7 +41,11 @@ cameraApp.prototype = {
             that._onFail.apply(that, arguments);
         }, {
             quality: 70,
-            destinationType: that._destinationType.FILE_URI
+            destinationType: that._destinationType.FILE_URI,
+            allowEdit: true,
+            targetWidth: 600,
+            targetHeight: 600,
+            ncodingType: Camera.EncodingType.JPEG
         });
     },
 

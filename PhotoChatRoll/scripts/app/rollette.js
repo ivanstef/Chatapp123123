@@ -18,12 +18,12 @@ app.Rollette = (function () {
             
         };
         
-        return 
-        {
+        return {
             init: init,
             show: show,
             hide: hide
         };
     }());
+    
     return roletteViewModel;
 }());

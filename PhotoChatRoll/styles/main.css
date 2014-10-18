@@ -138,7 +138,8 @@
 #friendsApp.km-flat .km-list input[type="email"],
 #friendsApp.km-flat .km-list input[type="date"],
 #friendsApp.km-flat textarea,
-#friendsApp.km-flat select {
+#friendsApp.km-flat select,
+#friendsApp .k-dropdown {
     position: static;
     width: 100%;
     height: 30px;
@@ -261,12 +262,17 @@
     font-weight: 400;
     font-size: 1.15rem;
 }
+
 #login-form .username,
-#login-form .password {
+#login-form .password,
+#login-form .intention,
+#login-form .distance {
     position: relative;
 }
 #login-form .username:before,
-#login-form .password:before {
+#login-form .password:before,
+#login-form .intention:before,
+#login-form .distance:before  {
     position: absolute;
     top: 50%;
     right: .75em;
@@ -284,6 +290,11 @@
 }
 #login-form .password:before {
     background-image: url(images/icon-password.png);
+}
+.intention:before {
+   font-family: FontAwesome;
+   content: "\F095";
+    color: black;
 }
 #friendsApp .welcome-scrn .group-wrp {
     margin: -1em 1em 0;

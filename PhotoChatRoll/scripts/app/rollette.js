@@ -8,20 +8,15 @@ app.Rollette = (function () {
     
     var roletteViewModel = (function()
     {
-        var init = function(){
-            
-        };
         var show = function(){
-            
-        };
-        var hide = function(){
-            
+            var currentUser = app.Users.currentUser;
+            alert(JSON.stringify(currentUser));
+            if(currentUser.data !== null)
+                $('#InitiatorProfile img').attr('src', currentUser.data.Picture);
         };
         
         return {
-            init: init,
-            show: show,
-            hide: hide
+            show: show
         };
     }());
     

@@ -11,8 +11,6 @@ function onDeviceReady() {
     navigator.splashscreen.hide();
 }
 
-
-
 function cameraApp() {}
 
 cameraApp.prototype = {
@@ -42,7 +40,7 @@ cameraApp.prototype = {
         }, {
             quality: 70,
             destinationType: that._destinationType.FILE_URI,
-            allowEdit: true,
+            //allowEdit: true,
             targetWidth: 600,
             targetHeight: 600,
             ncodingType: Camera.EncodingType.JPEG
@@ -50,12 +48,6 @@ cameraApp.prototype = {
     },
 
     _onPhotoURISuccess: function (imageURI) {
-        //var smallImage = document.getElementById('capturePhotoButton');
-        //smallImage.style.display = 'block';
-
-        // Show the captured photo.
-        //smallImage.src = imageURI;
-        
         var localStorage = window.localStorage;
         
         localStorage.setItem('ImageURI', imageURI);

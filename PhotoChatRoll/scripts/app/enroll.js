@@ -54,16 +54,16 @@ app.Enroll = (function () {
 
             Users.register(UserName, 'pass', {},
                 function (data) {
-
+                    
                     var UserId = data.result.Id;
 
                     app.everlive.Users.login(UserName,
                         'pass',
                         function (data) {
-                            alert(JSON.stringify(data));
+                            //alert(JSON.stringify(data));
                         },
                         function (error) {
-                            alert(JSON.stringify(error));
+                            //alert(JSON.stringify(error));
                         });
 
                     // Add the newly created user to the waiting list
@@ -98,27 +98,25 @@ app.Enroll = (function () {
                         app.everlive.Users.updateSingle({
                             Id: UserId,
                             Picture: uploadedFileId
-                        }, function (data) {
-                            alert('successfuly associated image with user');
+                        }, function (data) {                   
+                            app.Users.currentUser = data.result;
+                            //alert('successfuly associated image with user');
                             lStorage.removeItem('ImageURI');
+                          
+                            app.mobileApp.navigate('views/rollette.html');
                         }, function (error) {
-                            alert("An error has occurred:" + JSON.stringify(error) + ' a1');
+                            //alert("An error has occurred:" + JSON.stringify(error) + ' a1');
                         });
-                        // use the Id and the Uri of the uploaded file 
+                        // use the Id and the Uri of the uploaded file
                     }, function (error) {
-                        alert("An error has occurred:" + JSON.stringify(error) + ' a1');
+                        //alert("An error has occurred:" + JSON.stringify(error) + ' a1');
                     }, options);
                 }, function (error) {
                     app.showError(error);
                 });
 
-            AvailableUsers.create({
-
-            });
-
-            app.mobileApp.navigate('views/rollette.html');
+            
         };
-
 
         return {
             Intentions: intentionsDataSource,

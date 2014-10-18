@@ -2,7 +2,7 @@
   "ProjectName": "PhotoChatRoll",
   "ProjectGuid": "cbbdc05e-09c0-4c7d-8faf-931a2d0d9fcd",
   "projectVersion": 1,
-  "AppIdentifier": "com.telerik.PhotoChatRoll",
+  "AppIdentifier": "com.Bingomirovi.PhotoChatRoll",
   "DisplayName": "PhotoChatRoll",
   "Author": "",
   "Description": "PhotoChatRoll",
@@ -15,21 +15,25 @@
   "iOSBackgroundMode": [],
   "WP8TileTitle": "",
   "WP8Publisher": "",
-  "WP8Capabilities": [],
-  "WP8Requirements": [],
+  "WP8Capabilities": [
+    "ID_CAP_ISV_CAMERA",
+    "ID_CAP_LOCATION",
+    "ID_CAP_MAP",
+    "ID_CAP_NETWORKING",
+    "ID_CAP_SENSORS"
+  ],
+  "WP8Requirements": [
+    "ID_REQ_REARCAMERA"
+  ],
   "WP8PublisherID": "{24e3c368-d36b-4f92-9e4d-b22c1f79f2a8}",
   "WP8ProductID": "{2c82e3cc-9ce0-4bc2-80df-70163816d1b5}",
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
   "FrameworkVersion": "3.5.0",
   "CorePlugins": [
-    "org.apache.cordova.battery-status",
     "org.apache.cordova.camera",
-    "org.apache.cordova.media-capture",
     "org.apache.cordova.console",
-    "org.apache.cordova.contacts",
     "org.apache.cordova.device",
-    "org.apache.cordova.device-motion",
-    "org.apache.cordova.device-orientation",
+    "org.apache.cordova.dialogs",
     "org.apache.cordova.file",
     "org.apache.cordova.file-transfer",
     "org.apache.cordova.geolocation",
@@ -38,12 +42,8 @@
     "org.apache.cordova.keyboard",
     "org.apache.cordova.media",
     "org.apache.cordova.network-information",
-    "org.apache.cordova.dialogs",
     "org.apache.cordova.splashscreen",
-    "org.apache.cordova.vibration",
-    "com.telerik.plugin.eqatecanalytics",
-    "com.telerik.feedback",
-    "com.telerik.mobiletesting"
+    "org.apache.cordova.vibration"
   ],
   "CordovaPluginVariables": {
     "com.telerik.mobiletesting": {
@@ -51,28 +51,18 @@
     }
   },
   "AndroidPermissions": [
+    "android.permission.CAMERA",
+    "android.permission.VIBRATE",
     "android.permission.ACCESS_COARSE_LOCATION",
     "android.permission.ACCESS_FINE_LOCATION",
     "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
-    "android.permission.ACCESS_NETWORK_STATE",
-    "android.permission.ACCOUNT_MANAGER",
-    "android.permission.BROADCAST_STICKY",
-    "android.permission.CAMERA",
-    "android.permission.GET_ACCOUNTS",
     "android.permission.INTERNET",
-    "android.permission.MANAGE_ACCOUNTS",
-    "android.permission.MODIFY_AUDIO_SETTINGS",
-    "android.permission.READ_CONTACTS",
-    "android.permission.READ_PHONE_STATE",
-    "android.permission.RECEIVE_SMS",
-    "android.permission.RECORD_AUDIO",
-    "android.permission.VIBRATE",
-    "android.permission.WRITE_CONTACTS",
-    "android.permission.WRITE_EXTERNAL_STORAGE"
+    "android.permission.WRITE_EXTERNAL_STORAGE",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.BROADCAST_STICKY"
   ],
   "DeviceOrientations": [
-    "Portrait",
-    "Landscape"
+    "Portrait"
   ],
   "AndroidHardwareAcceleration": "false",
   "iOSStatusBarStyle": "Default",

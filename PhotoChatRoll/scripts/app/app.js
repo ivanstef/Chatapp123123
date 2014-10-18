@@ -122,7 +122,7 @@ var app = (function (win) {
 
         // Date formatter. Return date in d.m.yyyy format
         formatDate: function (dateString) {
-            return kendo.toString(new Date(dateString), 'MMM d, yyyy');
+            return kendo.toString(new Date(dateString), 'dd/MM/yyyy - HH:mm:ss');
         },
 
         // Current user logout

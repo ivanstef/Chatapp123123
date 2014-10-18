@@ -85,7 +85,6 @@ app.Enroll = (function () {
                     }, function (data) {
                        lStorage.setItem('currentImage', app.helper.resolvePictureUrl(uploadedFileId));
                         //alert('successfuly associated image with user');
-                        lStorage.removeItem('ImageURI');
                       
                         app.mobileApp.navigate('views/rollette.html');
                     }, function (error) {

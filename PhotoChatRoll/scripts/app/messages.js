@@ -4,6 +4,8 @@
 
 var app = app || {};
 
+window.localStorage.setItem('channelId', '535f6650-56c3-11e4-8034-2b72add164ab');
+
 app.Messages = (function () {
     'use strict';
     
@@ -28,7 +30,7 @@ app.Messages = (function () {
     };
     
     var ortcClient = null,
-        channel = 'YOUR_CHANNEL';
+        channel = window.localStorage.getItem('channelId');
     
      // Sends a message
         function send() {
@@ -127,6 +129,7 @@ app.Messages = (function () {
             }
         };
         
+        alert();
         var messagesDataSource = new kendo.data.DataSource({
             type: 'everlive',
             schema: {
@@ -147,7 +150,8 @@ app.Messages = (function () {
                     $('#msg-listview').empty();
                 }
             },
-            sort: { field: 'CreatedAt', dir: 'asc' }
+            sort: { field: 'CreatedAt', dir: 'asc' },
+            filter: { field: 'Id', operator: 'eq', value: channelId}
         });
         
         return {
@@ -156,6 +160,7 @@ app.Messages = (function () {
         
     }());
     
+    alert(JSON.stringify(messagesViewModel));
     return messagesViewModel;
 
 }());

@@ -1,4 +1,4 @@
-<div data-role="view" id="chat" data-layout="default" class="chat-view" data-model="app.Chat">
+<div data-role="view" id="chat" data-layout="default" class="chat-view" data-model="app.Messages">
     <div data-role="header">
         <div data-role="navbar">
             Chat
@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="comments-wrp">
-        <ul id="msg-listview"></ul>
+        <ul id="msg-listview" data-role="listview" data-style="inset" data-bind="source:messages" data-template="msgTemplate"></ul>
     </div>
 </div>
 

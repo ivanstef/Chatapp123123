@@ -10,20 +10,20 @@ app.Participants = (function () {
     var participantsModel = (function () {
 
         var participantsData;
+        var availableParticipants;
 
         // Retrieve current user and all users data from Backend Services
         var loadParticipants = function () {
 
             // Get the data about the currently logged in user
-            return app.everlive.Users.currentUser()
+            return app.everlive.data('Participant').get()
             .then(function (data) {
-          
+                participantsData = new kendo.data.ObservableArray(data.result);
                 // Get the data about all registered users
-                return app.everlive.Users.get();
+                return app.everlive.data('AvailableParticipants').get();
             })
             .then(function (data) {
-
-                participantsData = new kendo.data.ObservableArray(data.result);
+                availableParticipants = new kendo.data.ObservableArray(data.result);
             })
             .then(null,
                   function (err) {
@@ -36,6 +36,9 @@ app.Participants = (function () {
             load: loadParticipants,
             participants: function () {
                 return participantsData;
+            },
+            availableParticipants: function(){
+                return availableParticipants;
             }
         };
 

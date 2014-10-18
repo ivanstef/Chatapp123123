@@ -11,19 +11,36 @@ app.Rollette = (function () {
             var current = window.localStorage.getItem('currentImage');
             if (current !== null)
                 $('#InitiatorProfile img').attr('src', current);
-        };
-        
-        var init = function () {
+
             $('#counter_2').countdown({
-                image: 'styles/images/digits.png',
-                startTime: '00:05',
                 timerEnd: function () {
-                    alert('end!');
+                    setTimeout(rotate(1, 10), 3000);
                 },
-                format: 'mm:ss'
+                format: 'hh:mm:ss'
             });
         };
 
+        function rotate(count, max) {
+            $('#counter_2').countdown({
+               
+                timerEnd: function () {
+                    if (count < max) {
+                        setTimeout(rotate(Number(count) + 1, max), 3000);
+                        $("#foundProfile img").attr("src", "styles/images/faces/" + count + ".jpg");
+
+                    }
+                },
+                format: 'hh:mm:ss'
+            });
+            
+        }
+
+        var init = function () {
+            for (var i = 0; i < 10; i++) {
+                var effect = kendo.fx("#container").flipHorizontal($("#library"), $("#store")).duration(200);
+                effect.play();
+            }
+        };
         return {
             show: show,
             init: init

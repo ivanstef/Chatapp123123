@@ -7,7 +7,9 @@
     width: 140px;
     margin: 0 auto;
 }
-
+.comment-initiator {
+    background-color: yellow;
+}
 .active-border {
     position: relative;
     text-align: center;

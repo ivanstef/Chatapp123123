@@ -50,6 +50,7 @@ app.Enroll = (function () {
             }, function(data){
                 
                 var ParticipantId = data.result.Id;
+                window.localStorage.setItem('currentParticipantId', ParticipantId);
                 
                 app.everlive.data('AvailableParticipants').create({
                     ParticipantId: ParticipantId
@@ -98,7 +99,7 @@ app.Enroll = (function () {
                         alert("An error has occurred:" + JSON.stringify(error) + ' a1');
                     }, options);
                 } else {
-                    app.mobileApp.navigate('views/rollette.html');
+                    app.mobileApp.navigate('views/chat.html');
                 }
                 
             }, function(error){

@@ -12,9 +12,9 @@
 
 
 <script type="text/x-kendo-template" id="msgTemplate">
-    <div class="comment-content">
+    <div class="comment-content #if(IsInitiator()){# comment-initiator #}#">
+        <a class="user-share-txt">${Content}</a>
         <h2 class="person-name">${Sender()}</h2>
         <span class="time-span">${CreatedAtFormatted()}</span>
-        <a class="user-share-txt">${Msg}</a>
     </div>
 </script>

@@ -1,7 +1,4 @@
-/**
- * Participants model
- */
-
+/* Participants model */
 var app = app || {};
 
 app.Participants = (function () {
@@ -43,7 +40,7 @@ app.Participants = (function () {
         };
 
     }());
-
+    
     return participantsModel;
 
 }());

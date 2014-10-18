@@ -99,7 +99,11 @@ app.Enroll = (function () {
                             Id: UserId,
                             Picture: uploadedFileId
                         }, function (data) {                   
-                            app.Users.currentUser = data.result;
+                            app.everlive.Users.getById(UserId).then(function(data){
+                                app.Users.currentUser.data = data.result;
+                                app.Users.currentUser.data.Picture = app.helper.resolvePictureUrl(app.Users.currentUser.data.Picture);
+                            }).then(function(error){
+                            });
                             //alert('successfuly associated image with user');
                             lStorage.removeItem('ImageURI');
                           

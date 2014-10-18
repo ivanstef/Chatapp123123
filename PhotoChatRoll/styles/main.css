@@ -6,27 +6,36 @@
     width: 140px;
     margin: 0 auto;
 }
-.active-border{
+.active-border {
     position: relative;
     text-align: center;
     width: 110px;
     height: 110px;
     border-radius: 100%;
-    background-color:#39B4CC;
-    background-image:
-        linear-gradient(91deg, transparent 50%, #A2ECFB 50%),
-        linear-gradient(90deg, #A2ECFB 50%, transparent 50%);
+    background-color: #39B4CC;
+    background-image: linear-gradient(91deg, transparent 50%, #A2ECFB 50%), linear-gradient(90deg, #A2ECFB 50%, transparent 50%);
 }
-#user1Rollette {
-
+br {
+    clear: both;
 }
-#user2Rollette{
-    
+.cntSeparator {
+    font-size: 54px;
+    margin: 10px 7px;
+    color: #000;
 }
-#approveRollette{
-    
+.desc {
+    margin: 7px 3px;
 }
-.cf {
+.desc div {
+    float: left;
+    font-family: Arial;
+    width: 70px;
+    margin-right: 65px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+}
+#user1Rollette {} #user2Rollette {} #approveRollette {} .cf {
     zoom: 1;
 }
 .cf:before,
@@ -254,7 +263,6 @@
     font-weight: 400;
     font-size: 1.15rem;
 }
-
 #login-form .username,
 #login-form .password,
 #login-form .intention,
@@ -264,7 +272,7 @@
 #login-form .username:before,
 #login-form .password:before,
 #login-form .intention:before,
-#login-form .distance:before  {
+#login-form .distance:before {
     position: absolute;
     top: 50%;
     right: .8em;

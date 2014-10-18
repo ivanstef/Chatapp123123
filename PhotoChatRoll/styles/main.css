@@ -38,6 +38,13 @@ br {
 #user1Rollette {} #user2Rollette {} #approveRollette {} .cf {
     zoom: 1;
 }
+.Participant img, #InitiatorProfile img, #SelecteeProfile img {
+    width: 40%;
+    height: 40%;
+}
+.Participant img.Accepted, #InitiatorProfile img {
+    border: 2px solid green;
+}
 .cf:before,
 .cf:after {
     display: table;

@@ -1,5 +1,6 @@
 #action-area {
     width: 100%;
+    
 }
 
 #capturePhotoButton {
@@ -21,12 +22,13 @@
 #rolletteForm {
     width: 100%;
 }
-
 #counter_2 {
+    width: 106px;
     margin: 0 auto !important;
 }
 #approveRollette {
-    margin: 0 auto;
+    width:130px;
+    margin: 0 auto !important;
 }
 #rolletteForm br {
     clear: both;
@@ -84,6 +86,10 @@
     clear: both;
 }
 
+#rollette km-content {
+    background-image:url(images/backgorund.png);    
+}
+
 .km-flat .km-loader,
 .km-flat .km-rowinsert,
 .km-flat .km-state-active,
@@ -104,18 +110,21 @@
 .km-flat li.km-state-active .km-listview-label,
 .km-flat .km-listview-label input[type=radio]:checked,
 .km-flat .km-listview-label input[type=checkbox]:checked {
-    background: #3598db;
+    background-color:transparent;
 }
 
 #friendsApp.km-flat,
 #friendsApp.km-flat .km-navbar,
 #friendsApp.km-flat .km-content {
     border: 0 none;
-    background-color: #2d3e50;
+    background-color:transparent;
     color: #fff;
     font-family: "Open Sans", sans-serif;
 }
 
+body {
+    background-image: url(images/background.png);
+}
 #friendsApp .center-block {
     display: block;
     margin-right: auto;

@@ -666,14 +666,31 @@
     <Content Include="scripts\app\enroll.js" />
     <Content Include="scripts\app\jquery.countdown.js" />
     <Content Include="scripts\app\login.js" />
+    <Content Include="scripts\app\messages.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\participants.js">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="scripts\app\rollette.js" />
     <Content Include="scripts\app\settings.js" />
     <Content Include="scripts\app\signup.js" />
     <Content Include="scripts\app\users.js" />
     <Content Include="scripts\lib\everlive.all.min.js" />
+    <Content Include="styles\images\approved.png" />
     <Content Include="styles\images\avatar.png" />
+    <Content Include="styles\images\background.png" />
     <Content Include="styles\images\camera-icon.png" />
     <Content Include="styles\images\digits.png" />
+    <Content Include="styles\images\faces\1.jpg" />
+    <Content Include="styles\images\faces\2.jpg" />
+    <Content Include="styles\images\faces\3.jpg" />
+    <Content Include="styles\images\faces\4.jpg" />
+    <Content Include="styles\images\faces\5.jpg" />
+    <Content Include="styles\images\faces\6.jpg" />
+    <Content Include="styles\images\faces\7.jpg" />
+    <Content Include="styles\images\faces\8.jpg" />
+    <Content Include="styles\images\faces\9.jpg" />
     <Content Include="styles\images\icon-add.png" />
     <Content Include="styles\images\icon-add@2x.png" />
     <Content Include="styles\images\icon-adsf.png" />
@@ -765,6 +782,7 @@
     <Folder Include="scripts\lib\" />
     <Folder Include="styles\" />
     <Folder Include="styles\images\" />
+    <Folder Include="styles\images\faces\" />
     <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />

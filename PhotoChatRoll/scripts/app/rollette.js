@@ -11,28 +11,16 @@ app.Rollette = (function () {
             var current = window.localStorage.getItem('currentImage');
             if (current !== null)
                 $('#InitiatorProfile img').attr('src', current);
-
-            $('#counter_2').countdown({
-                timerEnd: function () {
-                    setTimeout(rotate(1, 10), 3000);
-                },
-                format: 'hh:mm:ss'
-            });
+            rotate(1, 10);
         };
 
         function rotate(count, max) {
-            $('#counter_2').countdown({
-               
-                timerEnd: function () {
-                    if (count < max) {
-                        setTimeout(rotate(Number(count) + 1, max), 3000);
-                        $("#foundProfile img").attr("src", "styles/images/faces/" + count + ".jpg");
-
-                    }
-                },
-                format: 'hh:mm:ss'
-            });
-            
+            if (count < max) {
+                setTimeout(function () {
+                    $("#foundProfile img").attr("src", "styles/images/faces/" + count + ".jpg");
+                    rotate(Number(count) + 1, max)
+                }, 3000);
+            }
         }
 
         var init = function () {

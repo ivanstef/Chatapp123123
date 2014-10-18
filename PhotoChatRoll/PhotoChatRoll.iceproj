@@ -657,7 +657,6 @@
     <Content Include="kendo\styles\textures\transtexture.png" />
     <Content Include="scripts\app\activities.js" />
     <Content Include="scripts\app\activity.js" />
-    <Content Include="scripts\app\add-activity.js" />
     <Content Include="scripts\app\add-comment.js" />
     <Content Include="scripts\app\analytics-monitor.js" />
     <Content Include="scripts\app\app.js" />

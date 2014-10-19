@@ -1,7 +1,8 @@
 <div data-role="view" id="chat" data-layout="default" class="chat-view" data-model="app.Messages">
     <div data-role="header">
         <div data-role="navbar">
-            Chat <span>00:00</span>
+            Chat
+            <a class="nav-button" data-align="right" data-icon="close" data-role="button" data-bind="click: terminateSession"></a>
         </div>
     </div>
     <div class="msg-wrp">

@@ -4,18 +4,18 @@
 
 var app = app || {};
 
-window.localStorage.setItem('channelId', '1c56e950-56fd-11e4-90ab-35bf04915830');
-window.localStorage.setItem('currentParticipantId', '06dad090-56f4-11e4-8f7c-0fa55703a46a');
-window.localStorage.setItem('participantId', '02818bc0-56f8-11e4-8078-ad8a3e51b7f2');
+//window.localStorage.setItem('channelId', '1c56e950-56fd-11e4-90ab-35bf04915830');
+//window.localStorage.setItem('currentParticipantId', '06dad090-56f4-11e4-8f7c-0fa55703a46a');
+//window.localStorage.setItem('participantId', '02818bc0-56f8-11e4-8078-ad8a3e51b7f2');
 
 app.Messages = (function () {
     'use strict';
 
     app.Participants.load();
     
-    $('textarea#Msg').autogrow({
+    /*$('textarea#Msg').autogrow({
         maxHeight: 150
-    });
+    });*/
     
     $('.msg-initiator').closest('li').css({
         'background-color': '#eee'
@@ -198,9 +198,17 @@ app.Messages = (function () {
             }, function(error){
             });
         };
+        
+        var terminateSession = function()
+        {
+            window.localStorage.removeItem('channelId');
+            window.localStorage.removeItem('participantId');
+        };
+        
         return {
             messages: messagesDataSource,
-            sendMsg: sendMsg
+            sendMsg: sendMsg,
+            terminateSession: terminateSession
         };
 
     }());

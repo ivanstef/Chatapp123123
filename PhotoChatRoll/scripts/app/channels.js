@@ -51,9 +51,9 @@ app.Channels = (function () {
         };
         
         return {
-            createChannel: createChannel,
-            removeChannel: removeChannel,
-            getChannelByParticipants: getChannelByParticipants
+            create: createChannel,
+            remove: removeChannel,
+            getByParticipants: getChannelByParticipants
         };
     }());
 

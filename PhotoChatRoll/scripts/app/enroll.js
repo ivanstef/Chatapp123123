@@ -43,10 +43,11 @@ app.Enroll = (function () {
             app.mobileApp.showLoading();
             
             var UserName = $('#username').val();
+           /*
             var currentParticipantId = window.localStorage.getItem('currentParticipantId');
             
             if( currentParticipantId === null )
-            {
+            {*/
                 var Participant = app.everlive.data('Participant');
 
                 Participant.create({
@@ -111,11 +112,27 @@ app.Enroll = (function () {
                 }, function (error) {
                     alert(JSON.stringify(error));
                 });
-            }
+           /* }*/
             
+            /*
             // If we have a participant, update his/her info
             if( currentParticipantId !== null )
             {
+                var filter = new Everlive.Query();
+                filter.where().eq('Id', currentParticipantId);
+                
+                app.everlive.data('Participant').get(filter).then(function(data){
+                   
+                    if( data.result.length === 0 )
+                    {
+                        window.localStorage.removeItem('currentParticipantId');
+                        app.mobileApp.navigate('index.html');
+                        
+                    }
+                }, function(error){
+                    
+                });
+                
                 app.everlive.data('Participant').updateSingle({
                     Id: currentParticipantId,
                     Nickname: UserName
@@ -141,7 +158,7 @@ app.Enroll = (function () {
                 }, function(error){
                 });
             }
-            
+            */
             app.mobileApp.hideLoading();
             app.mobileApp.navigate('views/rollette.html');
         };

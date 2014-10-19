@@ -34,7 +34,7 @@ app.Rollette = (function () {
                     if (isUserApproved && isParticipantApproved) {
                         app.mobileApp.navigate('views/chat.html');
                     }
-                }, 2000);
+                }, 5000);
             }
         }
 

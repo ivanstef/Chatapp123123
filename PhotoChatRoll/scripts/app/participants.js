@@ -90,32 +90,51 @@ app.Participants = (function () {
             });
         }
 
-        function markAsMet(participantId) {
+        var markAsMetParticipantId = null;
+        var markAsMet = function () {
             // Mark participant as met
+            var participantObj = null;
+            app.everlive.data('Participant').get()
+            .then(function (data) {
+                participantObj = data.result;
+                //retrive single item
+                var participants = JSON.parse(JSON.stringify(participantObj));
 
-            var participantObj = app.everlive.data('Participant').get();
-            alert(participantObj);
-            for (participant in participantObj.Met) {
-                alert(participant);
-                var parsedParticipant = JSON.parse(participant);
-                var arrayMetUsers = array();
+                for (var i = 0; i < participants.length; i++) {
+                    var participant = participants[i];
+                    var arrayMetUsers = new Array();
+                    
+                    //retrive Met object
+                    if (typeof participant.Met === 'undefined') {
+                        alert('met undefined');
+                        return;
+                    }
 
-                for (metUser in parsedParticipant.metUsers) {
-                    arrayMetUsers.push(metUser);
+                    for (var i = 0; i < participant.Met.length; i++) {
+                        alert(participant.Met[i]);
+
+                        arrayMetUsers.push(metUser);
+                    }
+
+                    if (arrayMetUsers.indexOf(markAsMetParticipantId) === -1) {
+                        arrayMetUsers.push(markAsMetParticipantId);
+                    }
+                    var encoded = JSON.encode(arrayDeclinedUsers);
+                    app.everlive.data('Participant').updateSingle({ Id: markAsMetParticipantId, Met: encoded },
+                    function (data) {
+                        alert(JSON.stringify(encoded));
+                    },
+                    function (error) {
+                        alert("Shit happened over here.")
+                    });
                 }
+            },
+            function (error) {
+                alert("Error receiving Participant object.");
+            });
 
-                if (arrayMetUsers.indexOf(participantId) === -1) {
-                    arrayMetUsers.push(participantId);
-                }
-                var encoded = JSON.encode(arrayDeclinedUsers);
-                app.everlive.data('Participant').updateSingle({ Id: participantId, MetUsers: encoded },
-                function (data) {
-                    alert(JSON.stringify(encoded));
-                },
-                function (error) {
-                    alert("Shit happened over here.")
-                });
-            }
+            //alert(participantObj);
+
         }
 
         function rolletteMatch() {
@@ -141,13 +160,18 @@ app.Participants = (function () {
 
         return {
             load: loadParticipants,
+            markAsMet: markAsMet,
             participants: function () {
                 return participantsData;
             },
             availableParticipants: function () {
                 return availableParticipants;
-            }
+            },
+            ParticipantId: function () {
+                return markAsMetParticipantId
+            },
         };
+
 
     }());
 

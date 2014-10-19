@@ -10,9 +10,6 @@
     width: 140px;
     margin: 0 auto;
 }
-.comment-initiator {
-    background-color: yellow;
-}
 #sendMsgBox {
     width: 100%;
     border-radius: 0;
@@ -46,16 +43,15 @@
 .clear {
     clear: both;
 }
-#rolletteForm {
-    width: 100%;
-}
-#counter_2 {
-    width: 106px;
-    margin: 0 auto !important;
-}
 #approveRollette {
-    width:130px;
-    margin: 0 auto !important;
+    font-size: 50px;
+    text-align: center;
+    color: #666 !important;
+}
+#approveRollette .km-button {
+    border: none;
+    padding: 0;
+    color: #666;
 }
 #rolletteForm br {
     clear: both;
@@ -366,13 +362,13 @@ body {
     background-color: rgba(255,255,255,0.8);
 }
 
-.TradeMark p {
+.Footer p {
     font-size: 1rem !important;
     font-weight: bold;
     margin: 0.5em 0;
 }
 
-.TradeMark {
+.Footer {
     background-color: rgba(255,255,255,0.8);
     color: #666;
     text-align: center;

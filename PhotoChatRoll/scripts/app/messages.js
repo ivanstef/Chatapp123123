@@ -13,9 +13,9 @@ app.Messages = (function () {
 
     app.Participants.load();
     
-    $('textarea#Msg').autogrow({
+    /*$('textarea#Msg').autogrow({
         maxHeight: 150
-    });
+    });*/
     
     $('.msg-initiator').closest('li').css({
         'background-color': '#eee'

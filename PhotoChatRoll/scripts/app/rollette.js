@@ -13,10 +13,7 @@ app.Rollette = (function () {
 
         var show = function () {
             var participantsArray = app.Participants.participants();
-
-            var current = window.localStorage.getItem('currentImage');
-            if (current !== null)
-                $('#InitiatorProfile img').attr('src', current);
+alert(typeof app.Participants.participants());
             rotate(0, participantsArray.length);
         };
 
@@ -29,7 +26,8 @@ app.Rollette = (function () {
                     //}
                     var resolvedImages = app.helper.resolvePictureUrl(participantsArray[count].Image);
 
-                    $("#foundProfile img").attr("src", resolvedImages);
+                   // $("#foundProfile").css({"backgroud-image": resolvedImages, 'background-size': 'cover'});
+                    $("#foundProfile img").attr('src', resolvedImages);
                     rotate(Number(count) + 1, max)
                     if (isUserApproved && isParticipantApproved) {
                         app.mobileApp.navigate('views/chat.html');

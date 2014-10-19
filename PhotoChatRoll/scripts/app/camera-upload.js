@@ -60,6 +60,7 @@ cameraApp.prototype = {
     },
 
     _onFail: function (message) {
+        app.mobileApp.hideLoading();
         app.showError(message);
     }
 }

@@ -1,0 +1,42 @@
+<div data-role="view" id="welcome" data-layout="default" class="welcome-scrn form-view" data-model="app.Enroll">
+        <div data-role="header"></div>
+
+        <h2 class="app-name center-text">
+                ChatSnap <small>Find chat pal immediately</small>
+        </h2>
+        <form id="login-form">
+            <div id="action-area">
+
+                <a><img id="capturePhotoButton" src="styles/images/camera-icon.png"/></a> 
+
+            </div>
+            <br />
+            <ul data-role="listview" data-style="inset">
+                <li class="username">
+                    <input type="text" id="username" placeholder="Username" />
+                </li>
+                 <!--
+                <li class="intention">
+                    <input data-role="dropdownlist" placeholder="Intention" data-text-field="Intention" data-value-field="IntentionID" data-bind="source:Intentions" />
+                </li>
+                <li class="distance">
+                    <input data-role="dropdownlist" data-text-field="Distance" data-value-field="DistanceID" data-bind="source:Distances" />
+                </li>-->
+            </ul>
+        </form>
+        <ol class="group-wrp">
+            <li>
+                <span id="login" data-role="touch" data-bind="events: { tap: enroll }">
+                        <a data-role="button" class="btn btn-login">Enroll</a>
+                    </span>
+            </li>
+            <!--li class="signup">
+                <a data-role="button" href="views/signupView.html" class="btn-signup">Don't have an account?</a>
+                </li>-->
+        </ol>
+        <div data-role="footer" class="TradeMark">
+            <p>
+                &copy; <span data-bind="text: getYear"></span> Bingomirovi Inc.
+            </p>
+        </div>
+    </div>

@@ -54,10 +54,6 @@ var app = (function (win) {
             };
 
             if (confirmed === true || confirmed === 1) {
-                // Stop EQATEC analytics monitor on app exit
-                if (analytics.isAnalytics()) {
-                    analytics.Stop();
-                }
                 AppHelper.logout().then(exit, exit);
             }
         }, 'Exit', ['OK', 'Cancel']);
@@ -69,22 +65,6 @@ var app = (function (win) {
 
         navigator.splashscreen.hide();
         fixViewResize();
-
-        if (analytics.isAnalytics()) {
-            analytics.Start();
-        }
-        
-        // Initialize AppFeedback
-        if (app.isKeySet(appSettings.feedback.apiKey)) {
-            try {
-                feedback.initialize(appSettings.feedback.apiKey);
-            } catch (err) {
-                console.log('Something went wrong:');
-                console.log(err);
-            }
-        } else {
-            console.log('Telerik AppFeedback API key is not set. You cannot use feedback service.');
-        }
     };
 
     // Handle "deviceready" event
@@ -94,9 +74,9 @@ var app = (function (win) {
 
     // Initialize Everlive SDK
     var el = new Everlive({
-                              apiKey: appSettings.everlive.apiKey,
-                              scheme: appSettings.everlive.scheme
-                          });
+      apiKey: appSettings.everlive.apiKey,
+      scheme: appSettings.everlive.scheme
+    });
 
     var emptyGuid = '00000000-0000-0000-0000-000000000000';
 
@@ -144,6 +124,14 @@ var app = (function (win) {
     var getYear = (function () {
         return new Date().getFullYear();
     }());
+    
+    var showLoader = function(){
+        mobileApp.showLoading();
+    };
+    
+    var hideLoader = function(){
+        mobileApp.hideLoading();  
+    };
 
     return {
         showAlert: showAlert,
@@ -153,6 +141,8 @@ var app = (function (win) {
         mobileApp: mobileApp,
         helper: AppHelper,
         everlive: el,
-        getYear: getYear
+        getYear: getYear,
+        loading: showLoader,
+        finished: hideLoader
     };
 }(window));

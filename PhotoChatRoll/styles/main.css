@@ -1,6 +1,8 @@
+.km-loader {
+    background-color: rgba(0,0,0,0.3) !important;
+}
 #action-area {
     width: 100%;
-    
 }
 
 #capturePhotoButton {

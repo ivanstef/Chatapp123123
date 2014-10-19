@@ -147,7 +147,7 @@ app.Participants = (function () {
                     for (var i = 0; i < partArray.length; i + 2) {
                         if (user[i].isEligable(partArray[i])) {
                             markAsMet(partArray[i]);
-                            //Check both things triggere
+                            //Check both things trigger
                         }
                     }
 

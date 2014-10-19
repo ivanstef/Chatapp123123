@@ -10,7 +10,7 @@ app.Rollette = (function () {
     var roletteViewModel = (function () {
         var isUserApproved = false;
         var isParticipantApproved = false;
-
+        var resolvedImage = false;
         var show = function () {
             rotate();
         };
@@ -24,32 +24,44 @@ app.Rollette = (function () {
 
                     //for (participant in participantsArray) {
                     //}
-                    var resolvedImages = app.helper.resolvePictureUrl(participantsArray[count].Image);
+                    resolvedImage = app.helper.resolvePictureUrl(participantsArray[count].Image);
+                    $("#approveRollette a").data("participantId", participantsArray[count].Id);
 
                     //$("#foundProfile img").attr("src", resolvedImages);
                     $("#foundProfile").closest('.km-content').css({
-                        'background-image': 'url('+resolvedImages+')',
+                        'background-image': 'url(' + resolvedImage + ')',
                         'background-size': 'cover'
                     });
                     rotate(Number(count) + 1, max)
-                    if (isUserApproved && isParticipantApproved) {
-                        
-                        window.localStorage.setItem('participantId', participantsArray[count].Id);
-                        var channelId = app.Channels.create(
-                            window.localStorage.getItem('currentParticipantId'),
-                            window.localStorage.getItem('participantId')
-                        );
-                        window.localStorage.setItem('channelId', channelId);
-                        
-                        app.mobileApp.navigate('views/chat.html');
-                    }
+
+
+
                 }, 5000);
             }
         }
 
         var approveParticipant = function () {
+            var participantId = $("#approveRollette a").data("participantId");
+            var channelId = app.Channels.getByParticipants(participantId, getItem("currentParticipantId"));
+
+            var intitiatorConfirm = false;
+            var participantConfirm = false;
+
+            if (channelId == null) {
+                
+                window.localStorage.setItem('participantId', participantId);
+                var channelId = app.Channels.create(
+                    window.localStorage.getItem('currentParticipantId'),
+                    window.localStorage.getItem('participantId')
+                );
+
+                app.mobileApp.navigate('views/chat.html');
+            }
+            window.localStorage.setItem('channelId', channelId);
+
+
             isUserApproved = true;
-            app.Participants.markAsMet();
+            //app.Participants.markAsMet();
         };
 
         var init = function () {

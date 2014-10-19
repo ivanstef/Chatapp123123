@@ -15,7 +15,9 @@ app.Channels = (function () {
             
             app.everlive.data('Channels').create({
                 InitiatorId: initiatorId,
-                ParticipantId: participantId
+                ParticipantId: participantId,
+                InitiatorConfirm: true,
+                ParticipantConfirm: false
             }, function(data){
                 channelId = data.result.Id;
             }, function(error){

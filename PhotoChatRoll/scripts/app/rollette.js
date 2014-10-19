@@ -12,16 +12,13 @@ app.Rollette = (function () {
         var isParticipantApproved = false;
 
         var show = function () {
-            var participantsArray = app.Participants.participants();
-
-            var current = window.localStorage.getItem('currentImage');
-            if (current !== null)
-                $('#InitiatorProfile img').attr('src', current);
-            rotate(0, participantsArray.length);
+            rotate();
         };
 
-        function rotate(count, max) {
+        function rotate() {
             var participantsArray = app.Participants.participants();
+            var count = 0;
+            var max = participantsArray.length;
             if (count < max) {
                 setTimeout(function () {
 
@@ -29,9 +26,21 @@ app.Rollette = (function () {
                     //}
                     var resolvedImages = app.helper.resolvePictureUrl(participantsArray[count].Image);
 
-                    $("#foundProfile img").attr("src", resolvedImages);
+                    //$("#foundProfile img").attr("src", resolvedImages);
+                    $("#foundProfile").closest('.km-content').css({
+                        'background-image': 'url('+resolvedImages+')',
+                        'background-size': 'cover'
+                    });
                     rotate(Number(count) + 1, max)
                     if (isUserApproved && isParticipantApproved) {
+                        
+                        window.localStorage.setItem('participantId', participantsArray[count].Id);
+                        var channelId = app.Channels.create(
+                            window.localStorage.getItem('currentParticipantId'),
+                            window.localStorage.getItem('participantId')
+                        );
+                        window.localStorage.setItem('channelId', channelId);
+                        
                         app.mobileApp.navigate('views/chat.html');
                     }
                 }, 5000);

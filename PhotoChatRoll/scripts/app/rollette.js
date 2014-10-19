@@ -6,6 +6,8 @@ var app = app || {};
 app.Rollette = (function () {
     'use strict';
 
+    var isUserApproved = false;
+    var isParticipantApproved = false;
     var roletteViewModel = (function () {
         var show = function () {
             var current = window.localStorage.getItem('currentImage');
@@ -19,8 +21,16 @@ app.Rollette = (function () {
                 setTimeout(function () {
                     $("#foundProfile img").attr("src", "styles/images/faces/" + count + ".jpg");
                     rotate(Number(count) + 1, max)
-                }, 3000);
+                    if (isUserApproved && isParticipantApproved) {
+                        app.
+                        app.mobileApp.navigate('views/chat.html');
+                    }
+                }, 5000);
             }
+        }
+
+        function approveParticipant(e) {
+
         }
 
         var init = function () {

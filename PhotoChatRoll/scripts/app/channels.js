@@ -38,7 +38,7 @@ app.Channels = (function () {
         
         var getChannelByParticipants(initiatorId, participantId)
         {
-            var filter = new app.everlive.Query();
+            var filter = new Everlive.Query();
             filter.where().eq('InitiatorId', initiatorId).eq('ParticipantId', participantId);
             
             var channelId = null;

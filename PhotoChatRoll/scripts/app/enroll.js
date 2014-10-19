@@ -126,7 +126,7 @@ app.Enroll = (function () {
                 });
                 
                 // if the current participant is not present in the AvailableParticipants, add him/her
-                var filter = new app.everlive.Query();
+                var filter = new Everlive.Query();
                 filter.where().eq('ParticipantId', currentParticipantId);
                 app.everlive.data('AvailableParticipants').get(filter).then(function(data){
                     if(data.result.length > 0)

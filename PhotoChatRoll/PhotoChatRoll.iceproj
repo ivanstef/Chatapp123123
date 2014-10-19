@@ -655,15 +655,9 @@
     <Content Include="kendo\styles\textures\stripe6.png" />
     <Content Include="kendo\styles\textures\transparency.png" />
     <Content Include="kendo\styles\textures\transtexture.png" />
-    <Content Include="scripts\app\activities.js" />
-    <Content Include="scripts\app\activity.js" />
-    <Content Include="scripts\app\add-comment.js" />
-    <Content Include="scripts\app\analytics-monitor.js" />
     <Content Include="scripts\app\app.js" />
     <Content Include="scripts\app\camera-upload.js" />
-    <Content Include="scripts\app\comments.js" />
     <Content Include="scripts\app\enroll.js" />
-    <Content Include="scripts\app\login.js" />
     <Content Include="scripts\app\messages.js">
       <SubType>Content</SubType>
     </Content>
@@ -672,9 +666,14 @@
     </Content>
     <Content Include="scripts\app\rollette.js" />
     <Content Include="scripts\app\settings.js" />
-    <Content Include="scripts\app\signup.js" />
     <Content Include="scripts\app\users.js" />
     <Content Include="scripts\lib\everlive.all.min.js" />
+    <Content Include="scripts\lib\jquery.autogrow-min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\lib\phonegap-websocket.js">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="styles\images\approved.png" />
     <Content Include="styles\images\avatar.png" />
     <Content Include="styles\images\background.png" />

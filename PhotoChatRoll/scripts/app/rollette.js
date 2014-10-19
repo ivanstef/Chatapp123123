@@ -35,14 +35,13 @@ app.Rollette = (function () {
         };
 
         var data;
-        function rotate() {
+        function rotate(count){
             
             activeChannels().fetch(function(){
                 data = this.data();
             });
             
             var participantsArray = app.Participants.participants();
-            var count = 0;
             var max = participantsArray.length;
             if (count < max) {
                 setTimeout(function () {
@@ -57,7 +56,7 @@ app.Rollette = (function () {
                         'background-image': 'url(' + resolvedImage + ')',
                         'background-size': 'cover'
                     });
-                    rotate(Number(count) + 1, max)
+                    rotate(Number(count) + 1);
 
 
 
@@ -97,7 +96,7 @@ app.Rollette = (function () {
             }
         };
         var show = function () {
-            rotate();
+            rotate(0);
         };
         return {
             show: show,

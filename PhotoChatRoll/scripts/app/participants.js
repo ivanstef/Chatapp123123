@@ -3,7 +3,7 @@ var app = app || {};
 
 app.Participants = (function () {
     'use strict';
-              
+
     var participantsModel = (function () {
 
         var participantsData;
@@ -29,22 +29,31 @@ app.Participants = (function () {
             );
         };
 
-        function isEligable(participantId){
+        function isEligable(participantId) {
             var eligable = true;
 
-            var participantObj = app.everlive.data('Participant').get();
+            var part = null;
+
+            var participantObj = app.everlive.data('Participant').get()
+            .then(function (data) {
+                part = data.result;
+            })
+            .then(null,
+                  function (err) {
+                      app.showError(err.message);
+                  });
 
             //check if DECLINED
-            for(object in participantObj.Declined){
+            for (object in participantObj.Declined) {
                 var declinedUsers = array();
                 declinedUsers = object.DeclinedUsers;
-                if(declinedUsers.indexOf(participantId) === -1){
+                if (declinedUsers.indexOf(participantId) === -1) {
                     eligable = false;
                 }
             }
 
             //check if MET
-            for (object in participantObj.Met){
+            for (object in participantObj.Met) {
                 var metUsers = array();
                 metUsers = object.MetUsers;
                 if (metUsers.indexOf(participantId) === -1) {
@@ -55,54 +64,55 @@ app.Participants = (function () {
             return eligable;
         }
 
-        function markAsDeclined(participantId){
+        function markAsDeclined(participantId) {
             // Mark chat participant as declined for participant in database
 
             var participantObj = app.everlive.data('Participant').get();
-            for(participant in participantObj.Declined){
+            for (participant in participantObj.Declined) {
                 var parsedParticipant = JSON.parse(participant);
                 var arrayDeclinedUsers = array();
 
-                for (declinedUser in parsedParticipant.declinedUsers){
+                for (declinedUser in parsedParticipant.declinedUsers) {
                     arrayDeclinedUsers.push(declinedUser);
                 }
 
-                if (arrayDeclinedUsers.indexOf(participantId) === -1)
-                {
+                if (arrayDeclinedUsers.indexOf(participantId) === -1) {
                     arrayDeclinedUsers.push(participantId);
                 }
             }
             var encoded = JSON.encode(arrayDeclinedUsers);
-            app.everlive.data('Participant').updateSingle({Id: participantId, DeclinedUsers: encoded},
-            function(data) {
+            app.everlive.data('Participant').updateSingle({ Id: participantId, DeclinedUsers: encoded },
+            function (data) {
                 alert(JSON.stringify(encoded));
             },
-            function(error){
+            function (error) {
                 alert("Shit happened over here.")
             });
         }
 
-        function markAsMet(participantId){
+        function markAsMet(participantId) {
             // Mark participant as met
 
             var participantObj = app.everlive.data('Participant').get();
-            for (participant in participantObj.Met){
+            alert(participantObj);
+            for (participant in participantObj.Met) {
+                alert(participant);
                 var parsedParticipant = JSON.parse(participant);
                 var arrayMetUsers = array();
 
-                for (metUser in parsedParticipant.metUsers){
+                for (metUser in parsedParticipant.metUsers) {
                     arrayMetUsers.push(metUser);
                 }
 
-                if(arrayMetUsers.indexOf(participantId) === -1){
+                if (arrayMetUsers.indexOf(participantId) === -1) {
                     arrayMetUsers.push(participantId);
                 }
                 var encoded = JSON.encode(arrayDeclinedUsers);
-                app.everlive.data('Participant').updateSingle({Id: participantId, MetUsers: encoded},
-                function(data) {
+                app.everlive.data('Participant').updateSingle({ Id: participantId, MetUsers: encoded },
+                function (data) {
                     alert(JSON.stringify(encoded));
                 },
-                function(error){
+                function (error) {
                     alert("Shit happened over here.")
                 });
             }
@@ -115,7 +125,7 @@ app.Participants = (function () {
                     for (row in data.result) {
                         partArray.push(row.ParticipantID);
                     }
-                    for (var i = 0; i < partArray.length; i+2) {
+                    for (var i = 0; i < partArray.length; i + 2) {
                         if (user[i].isEligable(partArray[i])) {
                             markAsMet(partArray[i]);
                             //Check both things triggere

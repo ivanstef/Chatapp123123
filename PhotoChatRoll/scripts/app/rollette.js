@@ -5,33 +5,43 @@ var app = app || {};
 
 app.Rollette = (function () {
     'use strict';
+    app.Participants.load();
 
-    var isUserApproved = false;
-    var isParticipantApproved = false;
     var roletteViewModel = (function () {
+        var isUserApproved = false;
+        var isParticipantApproved = false;
+
         var show = function () {
+            var participantsArray = app.Participants.participants();
+
             var current = window.localStorage.getItem('currentImage');
             if (current !== null)
                 $('#InitiatorProfile img').attr('src', current);
-            rotate(1, 10);
+            rotate(0, participantsArray.length);
         };
 
         function rotate(count, max) {
+            var participantsArray = app.Participants.participants();
             if (count < max) {
                 setTimeout(function () {
-                    $("#foundProfile img").attr("src", "styles/images/faces/" + count + ".jpg");
+
+                    //for (participant in participantsArray) {
+                    //}
+                    var resolvedImages = app.helper.resolvePictureUrl(participantsArray[count].Image);
+
+                    $("#foundProfile img").attr("src", resolvedImages);
                     rotate(Number(count) + 1, max)
                     if (isUserApproved && isParticipantApproved) {
-                        app.
                         app.mobileApp.navigate('views/chat.html');
                     }
-                }, 5000);
+                }, 2000);
             }
         }
 
-        function approveParticipant(e) {
-
-        }
+        var approveParticipant = function () {
+            isUserApproved = true;
+            app.Participants.markAsMet();
+        };
 
         var init = function () {
             for (var i = 0; i < 10; i++) {
@@ -41,7 +51,8 @@ app.Rollette = (function () {
         };
         return {
             show: show,
-            init: init
+            init: init,
+            approveParticipant: approveParticipant
         };
     }());
 

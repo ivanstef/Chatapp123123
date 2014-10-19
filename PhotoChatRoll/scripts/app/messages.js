@@ -198,9 +198,17 @@ app.Messages = (function () {
             }, function(error){
             });
         };
+        
+        var terminateSession = function()
+        {
+            window.localStorage.removeItem('channelId');
+            window.localStorage.removeItem('participantId');
+        };
+        
         return {
             messages: messagesDataSource,
-            sendMsg: sendMsg
+            sendMsg: sendMsg,
+            terminateSession: terminateSession
         };
 
     }());

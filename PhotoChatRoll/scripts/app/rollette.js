@@ -12,33 +12,38 @@ app.Rollette = (function () {
         var isParticipantApproved = false;
 
         var show = function () {
-            rotate(1);
+            rotate();
         };
 
-        function rotate(count) {
+        function rotate() {
             var participantsArray = app.Participants.participants();
+            var count = 0;
             var max = participantsArray.length;
             if (count < max) {
-                setTimeout(function () {
-
-                    //for (participant in participantsArray) {
-                    //}
-                    var resolvedImage = app.helper.resolvePictureUrl(participantsArray[count].Image);
-
-                   // $("#foundProfile").css({"backgroud-image": resolvedImage, 'background-size': 'cover'});
-                    //$("#foundProfile img").attr('src', resolvedImage);
-                    $('.km-content').css({
-                        'background-image': 'url('+resolvedImage+')',
-                        'background-size': 'cover'
-                    });
-                    rotate(Number(count) + 1, max)
-                    if (isUserApproved && isParticipantApproved) {
-                        app.mobileApp.navigate('views/chat.html');
-                    }
-                }, 2000);
+                var index = 
+                    setTimeout(function(){
+                         var resolvedImage = app.helper.resolvePictureUrl(participantsArray[count].Image);
+            
+                       // $("#foundProfile").css({"backgroud-image": resolvedImage, 'background-size': 'cover'});
+                        //$("#foundProfile img").attr('src', resolvedImage);
+                        $("#foundProfile").closest('.km-content').css({
+                            'background-image': 'url('+resolvedImage+')',
+                            'background-size': 'cover'
+                        });
+                        
+                        rotate(Number(count) + 1, max);
+                        
+                        if (isUserApproved && isParticipantApproved) {
+                            window.localStorage.setItem('participantId', participantsArray[count].Id);
+                            
+                            var channelId = app.Channels.create(window.localStorage.getItem('currentParticipantId'), window.localStorage.getItem('participantId'));
+                            window.localStorage.setItem('channelId', channelId);
+                            app.mobileApp.navigate('views/chat.html');
+                        }
+                    }, 2000);
             }
         }
-
+      
         var approveParticipant = function () {
             isUserApproved = true;
             app.Participants.markAsMet();

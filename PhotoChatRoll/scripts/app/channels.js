@@ -4,7 +4,7 @@
 
 var app = app || {};
 
-app.Channels = (function () {
+app.Channels = (function() {
     'use strict';
     
     var channelsViewModel = (function(){
@@ -38,7 +38,7 @@ app.Channels = (function () {
             });
         };
         
-        var getChannelByParticipants(initiatorId, participantId)
+        var getChannelByParticipants = function(initiatorId, participantId)
         {
             var filter = new Everlive.Query();
             filter.where().eq('InitiatorId', initiatorId).eq('ParticipantId', participantId);

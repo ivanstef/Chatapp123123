@@ -11,11 +11,36 @@ app.Rollette = (function () {
         var isUserApproved = false;
         var isParticipantApproved = false;
         var resolvedImage = false;
-        var show = function () {
-            rotate();
+        
+        var activeChannels = function () {
+            var dataSource = new kendo.data.DataSource({
+                type: 'everlive',
+                transport: {
+                    typeName: 'Channels'
+                },
+                schema: {
+                    model: {
+                        id: Everlive.idField
+                    }
+                },
+                serverFiltering: true,
+                filter: {
+                    field: 'ParticipantId',
+                    operator: 'eq',
+                    value: (window.localStorage.getItem('currentParticipantId')).trim()
+                }
+            });
+           
+            return dataSource;
         };
 
+        var data;
         function rotate() {
+            
+            activeChannels().fetch(function(){
+                data = this.data();
+            });
+            
             var participantsArray = app.Participants.participants();
             var count = 0;
             var max = participantsArray.length;
@@ -41,24 +66,25 @@ app.Rollette = (function () {
         }
 
         var approveParticipant = function () {
+            $("#approveRollette a").attr('disabled', true).css('color', 'green');
+            
             var participantId = $("#approveRollette a").data("participantId");
-            var channelId = app.Channels.getByParticipants(participantId, getItem("currentParticipantId"));
-
+            var channelId = app.Channels.getByParticipants(participantId, window.localStorage.getItem("currentParticipantId"));
+                                                           
             var intitiatorConfirm = false;
             var participantConfirm = false;
 
             if (channelId == null) {
-                
+
                 window.localStorage.setItem('participantId', participantId);
                 var channelId = app.Channels.create(
                     window.localStorage.getItem('currentParticipantId'),
                     window.localStorage.getItem('participantId')
                 );
 
-                app.mobileApp.navigate('views/chat.html');
             }
             window.localStorage.setItem('channelId', channelId);
-
+            app.mobileApp.navigate('views/chat.html');
 
             isUserApproved = true;
             //app.Participants.markAsMet();
@@ -69,6 +95,9 @@ app.Rollette = (function () {
                 var effect = kendo.fx("#container").flipHorizontal($("#library"), $("#store")).duration(200);
                 effect.play();
             }
+        };
+        var show = function () {
+            rotate();
         };
         return {
             show: show,

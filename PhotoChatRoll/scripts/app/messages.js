@@ -13,7 +13,7 @@ app.Messages = (function () {
 
     app.Participants.load();
     
-    $('#Msg').autogrow({
+    $('textarea#Msg').autogrow({
         maxHeight: 150
     });
     
@@ -50,8 +50,6 @@ app.Messages = (function () {
     var send = function(Msg) {
         ortcClient.send(channel, Msg);
     };
-
-   
 
     // Creates the client and the connection
     var createClient = function () {

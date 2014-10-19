@@ -25,6 +25,7 @@ cameraApp.prototype = {
         that._destinationType = navigator.camera.DestinationType;
 
         id("capturePhotoButton").addEventListener("click", function () {
+            app.mobileApp.showLoading();
             that._capturePhoto.apply(that, arguments);
         });
 
@@ -44,11 +45,13 @@ cameraApp.prototype = {
             //allowEdit: true,
             //targetWidth: 600,
             //targetHeight: 600,
-            ncodingType: Camera.EncodingType.JPEG
+            encodingType: Camera.EncodingType.JPEG
         });
     },
 
     _onPhotoURISuccess: function (imageURI) {
+        app.mobileApp.hideLoading();
+        
         var localStorage = window.localStorage;
         
         localStorage.setItem('ImageURI', imageURI);

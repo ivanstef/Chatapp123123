@@ -666,7 +666,6 @@
     </Content>
     <Content Include="scripts\app\rollette.js" />
     <Content Include="scripts\app\settings.js" />
-    <Content Include="scripts\app\users.js" />
     <Content Include="scripts\lib\everlive.all.min.js" />
     <Content Include="scripts\lib\jquery.autogrow-min.js">
       <SubType>Content</SubType>

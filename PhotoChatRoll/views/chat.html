@@ -1,27 +1,28 @@
 <div data-role="view" id="chat" data-layout="default" class="chat-view" data-model="app.Messages">
     <div data-role="header">
         <div data-role="navbar">
-            Chat
-            <a class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton" href="#welcome">Back</a>
+            Chat <span>00:00</span>
         </div>
     </div>
-    <div class="comments-wrp">
-        <ul id="msg-listview" data-role="listview" data-style="inset" data-bind="source:messages" data-template="msgTemplate"></ul>
+    <div class="msg-wrp">
+        <ul id="msg-listview" data-role="listview" data-style="inset" data-bind="source:messages" data-template="msgTemplate" data-endless-scroll="true"></ul>
     </div>
     <div data-role="footer">
         <span class="k-textbox k-space-right" id="sendMsgBox">
             <span>
-                <textarea></textarea>
-                <a href="#" class="k-button fa fa-send"></a>
+                <textarea id="Msg"></textarea>
+                <a id="sendMsg" class="k-button fa fa-send" data-bind="events: {click: sendMsg}"></a>
             </span>
             <span class="clear"></span>
         </span>
     </div>
 </div>
 <script type="text/x-kendo-template" id="msgTemplate">
-    <div class="comment-content #if(IsInitiator()){# comment-initiator #}#">
-        <a class="user-share-txt"> ${Content} </a>
-        <h2 class="person-name">${Sender()}</h2>
-        <span class="time-span"> ${CreatedAtFormatted()} < /span>
+    <div class="msg #if(IsInitiator()){# msg-initiator #}#">
+        <div class="msg-text"> ${Content} </div>
+        <div class="msg-meta-data">
+            <span class="msg-from">${Sender()}</span>
+            <span class="msg-time"> ${CreatedAtFormatted()} </span>
+        </div>
     </div>
 </script>

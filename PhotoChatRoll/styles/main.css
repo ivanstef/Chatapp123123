@@ -1,6 +1,8 @@
+.km-loader {
+    background-color: rgba(0,0,0,0.3) !important;
+}
 #action-area {
     width: 100%;
-    
 }
 
 #capturePhotoButton {
@@ -139,12 +141,18 @@
 }
 
 #friendsApp.km-flat,
-#friendsApp.km-flat .km-navbar,
 #friendsApp.km-flat .km-content {
     border: 0 none;
     background-color:transparent;
     color: #fff;
     font-family: "Open Sans", sans-serif;
+}
+
+
+.km-flat .km-navbar {
+    background-color: rgba(255,255,255,0.8);
+    color: #666;
+    font-weight: bold;
 }
 
 body {
@@ -293,7 +301,6 @@ body {
     width: 2em;
     height: 2em;
     border: 0 none;
-    background-color: transparent;
     background-position: 0 50%;
     background-repeat: no-repeat;
 }
@@ -337,6 +344,7 @@ body {
 #friendsApp.km-flat.km-on-ios.km-black-translucent-status-bar .km-header .km-view-title {
     margin-top: .4em;
 }
+
 /* App Footer */
 
 /*
@@ -538,14 +546,43 @@ body {
     color: #34495e;
 }
 
-#friendsApp .activity-view .comments-wrp {
+#friendsApp .activity-view .msg-wrp {
     margin-top: 1em;
     border-top: 1px solid #eaeced;
 }
 
-#friendsApp .activities-view .km-list > li:first-child {
-    padding-top: 0;
+ul#msg-listview li {
+    margin: 5px 0;
+    background-color: #bbb;
 }
+
+ul#msg-listview li .msg.msg-initiator {
+    background-color: #eeeeee;
+}
+
+.msg {
+    color: #666;
+}
+
+.msg .msg-text {
+    padding: 5px 0;
+}
+
+
+.msg .msg-meta-data {
+    border-top: 1px solid #ccc;
+}
+
+.msg .msg-sender {
+    float: left;
+    font-weight: bold;
+}
+
+.msg .msg-time {
+    float: right;
+    font-style: italic;
+}
+
 
 #friendsApp .user-avatar {
     float: left;

@@ -12,22 +12,25 @@ app.Rollette = (function () {
         var isParticipantApproved = false;
 
         var show = function () {
-            var participantsArray = app.Participants.participants();
-alert(typeof app.Participants.participants());
-            rotate(0, participantsArray.length);
+            rotate(1);
         };
 
-        function rotate(count, max) {
+        function rotate(count) {
             var participantsArray = app.Participants.participants();
+            var max = participantsArray.length;
             if (count < max) {
                 setTimeout(function () {
 
                     //for (participant in participantsArray) {
                     //}
-                    var resolvedImages = app.helper.resolvePictureUrl(participantsArray[count].Image);
+                    var resolvedImage = app.helper.resolvePictureUrl(participantsArray[count].Image);
 
-                   // $("#foundProfile").css({"backgroud-image": resolvedImages, 'background-size': 'cover'});
-                    $("#foundProfile img").attr('src', resolvedImages);
+                   // $("#foundProfile").css({"backgroud-image": resolvedImage, 'background-size': 'cover'});
+                    //$("#foundProfile img").attr('src', resolvedImage);
+                    $('.km-content').css({
+                        'background-image': 'url('+resolvedImage+')',
+                        'background-size': 'cover'
+                    });
                     rotate(Number(count) + 1, max)
                     if (isUserApproved && isParticipantApproved) {
                         app.mobileApp.navigate('views/chat.html');
